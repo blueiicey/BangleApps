@@ -2,9 +2,10 @@
     g.reset();
     const SETTINGS_FILE = "iceclient.json";
     let s = require("Storage");
-    const settings = s.readJSON('setting.json', 1);
-    let brightness = settings.brightness;
-    let timeout = settings.timeout;
+    let settings, brightness, timeout;
+    settings = s.readJSON('setting.json', 1);
+    brightness = settings.brightness;
+    timeout = settings.timeout;
     if (s.readJSON(SETTINGS_FILE) === undefined) {
         //create iceclient.json file
         s.writeJSON(SETTINGS_FILE, {
@@ -40,12 +41,18 @@
                 settings.beep = false;
                 settings.quiet = 1;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             } else if (settings.vibrate === false || settings.beep === false || settings.quiet === 1) {
                 //disable quiet mode
                 settings.vibrate = true;
                 settings.beep = "vib";
                 settings.quiet = 0;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             }
         },
         "Dark Mode": function () {
@@ -54,11 +61,17 @@
                 Bangle.setLCDBrightness(0.1);
                 settings.brightness = 0.1;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             } else if (brightness === 0.1) {
                 //disable dark mode
                 Bangle.setLCDBrightness(s.readJSON(SETTINGS_FILE).brightness);
                 settings.brightness = s.readJSON(SETTINGS_FILE).brightness;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             }
         },
         "LCD Timeout": function () {
@@ -67,11 +80,17 @@
                 Bangle.setLCDTimeout(0);
                 settings.timeout = 0;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             } else if (timeout === 0) {
                 //set lcd timeout back to default
                 Bangle.setLCDTimeout(s.readJSON(SETTINGS_FILE).timeout);
                 settings.timeout = s.readJSON(SETTINGS_FILE).timeout;
                 s.writeJSON("setting.json", settings);
+                settings = s.readJSON('setting.json', 1);
+                brightness = settings.brightness;
+                timeout = settings.timeout;
             }
         },
         "Exit": function () {
