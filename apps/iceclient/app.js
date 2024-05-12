@@ -49,12 +49,12 @@
             }
         },
         "Dark Mode": function () {
-            if (brightness !== .1) {
+            if (brightness !== 0.1) {
                 //enable dark mode
                 Bangle.setLCDBrightness(0.1);
                 settings.brightness = 0.1;
                 s.writeJSON("setting.json", settings);
-            } else if (brightness === .1) {
+            } else if (brightness === 0.1) {
                 //disable dark mode
                 Bangle.setLCDBrightness(s.readJSON(SETTINGS_FILE).brightness);
                 settings.brightness = s.readJSON(SETTINGS_FILE).brightness;
