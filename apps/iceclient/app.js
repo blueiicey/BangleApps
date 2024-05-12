@@ -72,7 +72,7 @@
                 Bangle.setLCDTimeout(s.readJSON(SETTINGS_FILE).timeout);
                 settings.timeout = s.readJSON(SETTINGS_FILE).timeout;
                 s.writeJSON("setting.json", settings);
-            };
+            }
         },
         "Exit": function () {
             Bangle.load();
