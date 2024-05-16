@@ -6,7 +6,7 @@
   "icon": "petrock.png",
   "type": "app",
   "tags": "game",
-  "supports": ["BANGLEJS"],
+  "supports": ["BANGLEJS","BANGLEJS2"],
   "storage": [
     {"name":"petrock.app.js","url":"app.js"},
     {"name":"petrock.img","url":"app-icon.js","evaluate":true}
